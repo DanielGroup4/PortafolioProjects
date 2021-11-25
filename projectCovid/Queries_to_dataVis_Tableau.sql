@@ -8,14 +8,14 @@ Queries used for Tableau Project
 
 -- 1. 
 
---SELECT	
---	SUM(new_cases) AS total_cases
---	,SUM(CAST(new_deaths AS int)) AS total_deaths
---	,ROUND(SUM(CAST(new_deaths AS int)) / SUM(New_Cases)*100, 2) AS DeathPercentage
---FROM 
---	ProjectCovid19..CovidDeaths
---WHERE 
---	continent is not null 
+SELECT	
+	SUM(new_cases) AS total_cases
+	,SUM(CAST(new_deaths AS int)) AS total_deaths
+	,ROUND(SUM(CAST(new_deaths AS int)) / SUM(New_Cases)*100, 4) AS DeathPercentage
+FROM 
+	ProjectCovid19..CovidDeaths
+WHERE 
+	continent is not null 
 --GROUP BY
 --	date
 -- ORDER BY
@@ -44,11 +44,12 @@ numbers are extremely close so I will keep them - The Second includes "Internati
 --GROUP BY
 --	date
 --ORDER BY
-	--1,2
--- GO
+--	1,2
+ GO
 
 
--- 2. 
+-- 2.
+
 -- I take these out as they are not inluded in the above queries and want to stay consistent
 -- (Los quito porque no están incluidos en las consultas anteriores y quiero mantener la coherencia)
 -- European Union is part of Europe
@@ -90,18 +91,24 @@ GO
 
 -- 4.
 
-SELECT 
+SELECT
 	Location
 	,Population
 	,date
 	,MAX(total_cases) as HighestInfectionCount
-	,ROUND(MAX((total_cases/population))*100, 2) AS PercentPopulationInfected
+	,MAX((total_cases/population))*100 as PercentPopulationInfected
 FROM
 	ProjectCovid19..CovidDeaths
 GROUP BY
-	Location 
-	,Population 
+	Location
+	,Population
 	,date
-ORDER BY 
+ORDER BY
 	PercentPopulationInfected DESC
+
+
+
+-- 5.
+
+
 GO
