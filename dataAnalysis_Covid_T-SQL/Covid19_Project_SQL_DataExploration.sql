@@ -1,3 +1,11 @@
+/*
+Covid19 Data Exploration
+
+Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
+
+*/
+
+
 --select * 
 --from ProjectCovid19..CovidDeaths
 --order by 3, 4
@@ -70,9 +78,9 @@ GO
 
 -- Countries with Highest Death Count per Population
 
-SELECT Location
-	  ,MAX(Total_deaths) AS TotalDeathCount
---SELECT Location, MAX(CAST(Total_deaths AS int)) AS TotalDeathCount
+SELECT 
+	Location
+	,MAX(Total_deaths) AS TotalDeathCount
 FROM	
 	ProjectCovid19..CovidDeaths
 WHERE 
@@ -143,7 +151,10 @@ SELECT
 	 ,d.population
 	 ,v.new_vaccinations
 	 ,SUM(CONVERT(bigint, v.new_vaccinations)) OVER 
-	 (PARTITION BY d.location ORDER BY d.location, d.date) AS CumulativeNumberOfPeopleVaccinated
+	 (
+		PARTITION BY d.location 
+			ORDER BY d.location, d.date
+	 ) AS CumulativeNumberOfPeopleVaccinated
 FROM
 	ProjectCovid19..CovidVaccinations v
 JOIN 
@@ -167,7 +178,7 @@ WITH Population_Vac
 	continent, location, date, population, new_vaccinations, CumulativeNumberOfPeopleVaccinated
 )
 AS
-(
+   (
 	SELECT
 		d.continent
 		,d.location
@@ -175,7 +186,10 @@ AS
 		,d.population
 		,v.new_vaccinations
 		,SUM(CONVERT(bigint, v.new_vaccinations)) OVER 
-		(PARTITION BY d.location ORDER BY d.location, d.date) AS CumulativeNumberOfPeopleVaccinated
+		(
+			PARTITION BY d.location 
+				ORDER BY d.location, d.date
+		) AS CumulativeNumberOfPeopleVaccinated
 	FROM
 		ProjectCovid19..CovidVaccinations v
 	JOIN 
@@ -187,7 +201,7 @@ AS
 		d.continent IS NOT NULL AND
 		v.new_vaccinations IS NOT NULL AND
 		'CumulativeNumberOfPeopleVaccinated' IS NOT NULL
-)
+   )
 SELECT 
 	* ,
 	ROUND((CumulativeNumberOfPeopleVaccinated / population)*100, 2) AS PercentageOfVaccinatedVsPopulation
@@ -210,7 +224,6 @@ CREATE TABLE #PercentPopulationVaccinated
 	,New_Vaccunations numeric
 	,CumulativeNumberOfPeopleVaccinated numeric
 )
-
 INSERT INTO #PercentPopulationVaccinated
 SELECT
 	d.continent
@@ -219,7 +232,10 @@ SELECT
 	,d.population
 	,v.new_vaccinations
 	,SUM(CONVERT(bigint, v.new_vaccinations)) OVER 
-	(PARTITION BY d.location ORDER BY d.location, d.date) AS CumulativeNumberOfPeopleVaccinated
+	(
+		PARTITION BY d.location 
+			ORDER BY d.location, d.date
+	) AS CumulativeNumberOfPeopleVaccinated
 FROM
 	ProjectCovid19..CovidVaccinations v
 JOIN 
@@ -233,8 +249,8 @@ WHERE
 	'CumulativeNumberOfPeopleVaccinated' IS NOT NULL
 
 SELECT 
-	*, 
-	(CumulativeNumberOfPeopleVaccinated  / Population)*100 AS PercentageOfVaccinatedVsPopulation
+	* 
+	,(CumulativeNumberOfPeopleVaccinated  / Population)*100 AS PercentageOfVaccinatedVsPopulation
 FROM
 	#PercentPopulationVaccinated
 ORDER BY
@@ -252,7 +268,10 @@ SELECT
 	,d.population
 	,v.new_vaccinations
 	,SUM(CONVERT(bigint, v.new_vaccinations)) OVER 
-	(PARTITION BY d.location ORDER BY d.location, d.date) AS CumulativeNumberOfPeopleVaccinated
+	(
+		PARTITION BY d.location 
+			ORDER BY d.location, d.date
+	) AS CumulativeNumberOfPeopleVaccinated
 FROM
 	ProjectCovid19..CovidVaccinations v
 JOIN 
@@ -268,6 +287,7 @@ WHERE
 	--2,3
 GO
 
-SELECT *
+SELECT 
+	*
 FROM
 	PercentPopulationVaccinated
