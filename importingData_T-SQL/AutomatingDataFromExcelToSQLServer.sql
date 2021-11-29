@@ -86,7 +86,8 @@ SELECT
 FROM 
 	ProjectCovid19..CovidDeaths
 WHERE 
-	location NOT IN('World', 'Asia', 'Africa', 'European Union', 'Lower middle income', 'Upper middle income', 'High income', 'Europe', 'Low income', 'North America', 'South America')
+	location NOT IN('World', 'Asia', 'Africa', 'European Union', 'Lower middle income', 
+					'Upper middle income', 'High income', 'Europe', 'Low income', 'North America', 'South America')
 GROUP BY 
 	location
 ORDER BY
