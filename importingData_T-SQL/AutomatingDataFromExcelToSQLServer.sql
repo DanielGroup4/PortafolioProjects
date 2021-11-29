@@ -1,5 +1,5 @@
 
--- Importing Data using and BULK INSERT
+-- Importing Data using BULK INSERT
 
 
 -- Automating from excel to SQL Server
