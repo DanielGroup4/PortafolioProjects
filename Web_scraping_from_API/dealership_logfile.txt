@@ -1,0 +1,16 @@
+16:30:14-Dec-01-2021,ETL Process Job Started, Inicio de Proceso ETL
+16:30:14-Dec-01-2021,Extract phase Ended, fase de extraccion finalizada
+16:32:36-Dec-01-2021,ETL Process Job Started, Inicio de Proceso ETL
+16:32:36-Dec-01-2021,Extract phase Ended, fase de extraccion finalizada
+16:41:29-Dec-01-2021,Transform phase Started, Fase de tranformacion iniciada
+16:41:29-Dec-01-2021,Transform phase Ended, Fase de transformación finalizada
+16:45:09-Dec-01-2021,ETL Process Job Started, Inicio de Proceso ETL
+16:45:09-Dec-01-2021,Extract phase Ended, fase de extraccion finalizada
+16:50:01-Dec-01-2021,Load phase Started, Fase de carga iniciada
+16:50:02-Dec-01-2021,Load phase Ended, Fase de carga finalizada
+16:53:27-Dec-01-2021,ETL Process Ended, Proceso ETL finalizado
+17:08:15-Dec-01-2021,Transform phase Started, Fase de tranformacion iniciada
+17:08:15-Dec-01-2021,Transform phase Ended, Fase de transformación finalizada
+17:08:23-Dec-01-2021,Load phase Started, Fase de carga iniciada
+17:08:23-Dec-01-2021,Load phase Ended, Fase de carga finalizada
+17:08:29-Dec-01-2021,ETL Process Ended, Proceso ETL finalizado
